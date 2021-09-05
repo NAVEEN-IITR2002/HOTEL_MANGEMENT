@@ -1,7 +1,8 @@
 import random
 import datetime
 
-# Global List Declaration
+# Global List
+#THIS IS DONE TO SAVE THE DATA GLOBALY SO THAT ALL FUNCTION HAVE ACCESS AND CAN BE APPENDED WHEN IN NEED
 name = []
 phno = []
 add = []
@@ -15,14 +16,14 @@ roomno = []
 custid = []
 day = []
 
-# Global Variable Declaration
-
+# Variable Declaration
 i = 0
 
 
 # Home Function
+# IT IS THE MASTER FUNCTION WHICH HELPS IN EXECUTION OF ALL THE FUNCTIONS ACCORDING TO THE CASE INPUT.
 def Home():
-    print("\t\t\t\t\t\t WELCOME TO HOTEL ANCASA\n")
+    print("\t\t\t\t\t\t WELCOME TO HOTEL \n")
     print("\t\t\t 1 Booking\n")
     print("\t\t\t 2 Rooms Info\n")
     print("\t\t\t 3 Room Service(Menu Card)\n")
@@ -56,10 +57,10 @@ def Home():
         exit()
 
 
-# Function used in booking
 
+# CHECKS WHETHER DATE EXIST OR NOT IN CALENDER
 def date(c):
-    if c[2] > 2020 and c[2] <= 2021:
+    if c[2] > 2020 and c[2] <= 2021:     # AS 2020 IS OVER IN THE TIMEFRAME
 
         if c[1] != 0 and c[1] <= 12:
 
@@ -81,28 +82,23 @@ def date(c):
                     Booking()
 
 
-            # if month is odd & less than equal
-            # to 7th  month
+
             elif c[1] <= 7 and c[1] % 2 != 0 and c[0] <= 31:
                 pass
 
-            # if month is even & less than equal to 7th
-            # month and not 2nd month
+
             elif c[1] <= 7 and c[1] % 2 == 0 and c[0] <= 30 and c[1] != 2:
                 pass
 
-            # if month is even & greater than equal
-            # to 8th  month
+
             elif c[1] >= 8 and c[1] % 2 == 0 and c[0] <= 31:
                 pass
 
-            # if month is odd & greater than equal
-            # to 8th  month
             elif c[1] >= 8 and c[1] % 2 != 0 and c[0] <= 30:
                 pass
 
             else:
-                print("Invalid date\n")
+                print("Invalid date\n")                    # IT HELPS IN DELETING THE LAST INPUT GIVEN IN THE BOOKING FUNCTION AS DATE INPUT IS INCORRECT
                 name.pop(i)
                 phno.pop(i)
                 add.pop(i)
@@ -131,24 +127,24 @@ def date(c):
 
 # Booking function
 def Booking():
-    # used global keyword to
-    # use global variable 'i'
+
+
+
     global i
     print(" BOOKING ROOMS")
     print(" ")
-
 
     n = str(input("Name: "))
     p1 = str(input("Phone No.: "))
     a = str(input("Address: "))
 
-        # checks if any field is not empty
+    # checks if any field is not empty
     if n != "" and p1 != "" and a != "":
-      name.append(n)
-      add.append(a)
+        name.append(n)
+        add.append(a)
     else:
-      print("\tName, Phone no. & Address cannot be empty..!!")
-      Booking()
+        print("\tName, Phone no. & Address cannot be empty..!!")
+        Booking()
 
     cii = str(input("Check-In: "))
     checkin.append(cii)
@@ -171,7 +167,7 @@ def Booking():
     # check-in date
     if co[1] < ci[1] and co[2] < ci[2]:
 
-        print("\n\tErr..!!\n\tCheck-Out date must fall after Check-In\n")
+        print("\n\tErr..!!\n\tCheck-Out date must fall after Check-In\n")                       # IT HELPS IN DELETING THE LAST INPUT GIVEN IN THE BOOKING FUNCTION AS DATE INPUT IS INCORRECT
         name.pop(i)
         add.pop(i)
         checkin.pop(i)
@@ -179,7 +175,7 @@ def Booking():
         Booking()
     elif co[1] == ci[1] and co[2] >= ci[2] and co[0] <= ci[0]:
 
-        print("\n\tErr..!!\n\tCheck-Out date must fall after Check-In\n")
+        print("\n\tErr..!!\n\tCheck-Out date must fall after Check-In\n")                       # IT HELPS IN DELETING THE LAST INPUT GIVEN IN THE BOOKING FUNCTION AS DATE INPUT IS INCORRECT
         name.pop(i)
         add.pop(i)
         checkin.pop(i)
@@ -203,8 +199,7 @@ def Booking():
 
     ch = int(input("->"))
 
-    # if-conditions to display alloted room
-    # type and it's price
+
     if ch == 0:
         print(" 1. Standard Non-AC - Rs. 3500")
         print(" 2. Standard AC - Rs. 4000")
@@ -239,9 +234,9 @@ def Booking():
     rn = random.randrange(40) + 300
     cid = random.randrange(40) + 10
 
-    # checks if alloted room no. & customer
+
     # id already not alloted
-    while rn in roomno or cid in custid:
+    while rn in roomno or cid in custid:                # IF ALREADY ALLOTED CHECK TILL NEW ID AND ROOM NUMBER IS NOT ALLOTED
         rn = random.randrange(60) + 300
         cid = random.randrange(60) + 10
 
@@ -323,7 +318,7 @@ def restaurant():
         if custid[n] == ph and p[n] == 0:
             f = 1
             print("-------------------------------------------------------------------------")
-            print("                           Hotel AnCasa")
+            print("                           Hotel      ")
             print("-------------------------------------------------------------------------")
             print("                            Menu Card")
             print("-------------------------------------------------------------------------")
@@ -366,8 +361,7 @@ def restaurant():
 
                 ch = int(input(" -> "))
 
-                # if-elif-conditions to assign item
-                # prices listed in menu card
+
                 if ch == 1 or ch == 31 or ch == 32:
                     rs = 20
                     r = r + rs
@@ -416,8 +410,7 @@ def restaurant():
                     print("Wrong Choice..!!")
             print("Total Bill: ", r)
 
-            # updates restaurant charges and then
-            # appends in 'rc' list
+
             r = r + rc.pop(n)
             rc.append(r)
         else:
@@ -440,8 +433,7 @@ def Payment():
     for n in range(0, i):
         if ph == phno[n]:
 
-            # checks if payment is
-            # not already done
+
             if p[n] == 0:
                 f = 1
                 print(" Payment")
@@ -454,13 +446,13 @@ def Payment():
                 print("  4- Cash")
                 x = int(input("-> "))
                 print("\n  Amount: ", (price[n] * day[n]) + rc[n])
-                print("\n            Pay For AnCasa")
-                print("  (y/n)")
+                print("\n  Pay For HOTEL")
+                print(" TYPE (Y/N)")
                 ch = str(input("->"))
 
-                if ch == 'y' or ch == 'Y':
+                if ch == 'Y' or ch == 'y':
                     print("\n\n --------------------------------")
-                    print("           Hotel AnCasa")
+                    print("              Hotel   ")
                     print(" --------------------------------")
                     print("              Bill")
                     print(" --------------------------------")
@@ -477,8 +469,7 @@ def Payment():
                     p.pop(n)
                     p.insert(n, 1)
 
-                    # pops room no. and customer id from list and
-                    # later assigns zero at same position
+
                     roomno.pop(n)
                     custid.pop(n)
                     roomno.insert(n, 0)
@@ -530,5 +521,5 @@ def Record():
         exit()
 
 
-# Driver Code
+# CALLING MASTER FUNCTION WHICH CONTAINS ALL OTHER FUNCTIONS FOR EXECUTION
 Home()
